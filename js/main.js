@@ -40,49 +40,6 @@
 	// Scrollax
    $.Scrollax();
 
-
-
-   // Burger Menu
-	var burgerMenu = function() {
-
-		$('body').on('click', '.js-fh5co-nav-toggle', function(event){
-
-			event.preventDefault();
-
-			if ( $('#ftco-nav').is(':visible') ) {
-				$(this).removeClass('active');
-			} else {
-				$(this).addClass('active');	
-			}
-
-			
-			
-		});
-
-	};
-	burgerMenu();
-
-
-	var onePageClick = function() {
-
-
-		$(document).on('click', '#ftco-nav a[href^="#"]', function (event) {
-	    event.preventDefault();
-
-	    var href = $.attr(this, 'href');
-
-	    $('html, body').animate({
-	        scrollTop: $($.attr(this, 'href')).offset().top - 70
-	    }, 500, function() {
-	    	// window.location.hash = href;
-	    });
-		});
-
-	};
-
-	onePageClick();
-	
-
 	var carousel = function() {
 		$('.home-slider').owlCarousel({
 	    loop:true,
@@ -106,6 +63,51 @@
 	      }
 	    }
 		});
+		$('.carousel-testimony').owlCarousel({
+			center: false,
+			loop: true,
+			items:1,
+			margin: 30,
+			stagePadding: 0,
+			nav: false,
+			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+			responsive:{
+				0:{
+					items: 1
+				},
+				600:{
+					items: 3
+				},
+				1000:{
+					items: 4
+				}
+			}
+		});
+
+		$('.single-slider').owlCarousel({
+			animateOut: 'fadeOut',
+	    animateIn: 'fadeIn',
+			autoplay: true,
+			loop: true,
+			items:1,
+			margin: 0,
+			stagePadding: 0,
+			nav: true,
+			dots: true,
+			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+			responsive:{
+				0:{
+					items: 1
+				},
+				600:{
+					items: 1
+				},
+				1000:{
+					items: 1
+				}
+			}
+		});
+
 	};
 	carousel();
 
@@ -174,10 +176,9 @@
 	scrollWindow();
 
 	
-
 	var counter = function() {
 		
-		$('#section-counter, .hero-wrap, .ftco-counter').waypoint( function( direction ) {
+		$('#section-counter').waypoint( function( direction ) {
 
 			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
 
@@ -200,7 +201,6 @@
 
 	}
 	counter();
-
 
 	var contentWayPoint = function() {
 		var i = 0;
@@ -238,6 +238,8 @@
 	};
 	contentWayPoint();
 
+
+
 	// magnific popup
 	$('.image-popup').magnificPopup({
     type: 'image',
@@ -271,34 +273,10 @@
 
 
 
-function makeTimer() {
-
-		var endTime = new Date("21 December 2019 9:56:00 GMT+01:00");			
-		endTime = (Date.parse(endTime) / 1000);
-
-		var now = new Date();
-		now = (Date.parse(now) / 1000);
-
-		var timeLeft = endTime - now;
-
-		var days = Math.floor(timeLeft / 86400); 
-		var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
-		var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
-		var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
-
-		if (hours < "10") { hours = "0" + hours; }
-		if (minutes < "10") { minutes = "0" + minutes; }
-		if (seconds < "10") { seconds = "0" + seconds; }
-
-		$("#days").html(days + "<span>Days</span>");
-		$("#hours").html(hours + "<span>Hours</span>");
-		$("#minutes").html(minutes + "<span>Minutes</span>");
-		$("#seconds").html(seconds + "<span>Seconds</span>");		
-
-}
-
-setInterval(function() { makeTimer(); }, 1000);
-
+  var bgVideo = function() {
+		$('.player').mb_YTPlayer();
+	};
+	bgVideo();
 
 
 
